@@ -26,6 +26,7 @@
   --color-quaternary: #f6eedf;
   --color-quaternary-m-light: hsla(39, 56%, 92%, 0.55);
   --color-quaternary-m-dark: hsla(39, 56%, 92%, 0.85);
+  --color-white: white;
 
   --transition-duration: 0.3s;
 
@@ -66,7 +67,7 @@ a:visited {
 }
 
 p {
-  color: white;
+  color: var(--color-white);
   font-size: calc(1rem + 1vw);
   font-weight: 200;
 }
@@ -302,7 +303,7 @@ i {
 .header__logo__content--content--title {
   font-size: calc(4rem + 4vw);
   font-weight: 300;
-  color: white;
+  color: var(--color-white);
   text-transform: uppercase;
   padding: 0 2rem 0 var(--font-size-title);
 }
@@ -468,14 +469,14 @@ i {
 .booking-date__contact--link:link,
 .booking-date__contact--link:visited {
   background-color: var(--color-secondary);
-  color: white;
+  color: var(--color-white);
   transition: all var(--transition-duration) ease-in-out;
 }
 
 .booking-date__contact--link:hover,
 .booking-date__contact--link:active {
   color: var(--color-secondary);
-  background-color: white;
+  background-color: var(--color-white);
   border: 0.1rem solid var(--color-secondary);
 }
 
@@ -515,14 +516,14 @@ div[class^='villas'] h2[class^='villas'] {
   font-size: var(--font-size-title);
   padding: 0 2rem 1rem 0;
   font-weight: 400;
-  color: white;
+  color: var(--color-white);
   text-transform: uppercase;
 }
 
 div[class^='villas'] p[class^='villas'] {
   font-size: 2rem;
   margin: 1.5rem 0 4rem 0;
-  color: white;
+  color: var(--color-white);
   font-weight: 500;
 }
 
@@ -530,7 +531,7 @@ div[class^='villas'] a[class^='villas']:link,
 div[class^='villas'] a[class^='villas']:visited {
   display: inline-block;
   margin-bottom: 2rem;
-  background-color: white;
+  background-color: var(--color-white);
   color: var(--color-primary);
   z-index: 2;
   overflow: hidden;
@@ -538,7 +539,7 @@ div[class^='villas'] a[class^='villas']:visited {
 
 div[class^='villas'] a[class^='villas']:hover,
 div[class^='villas'] a[class^='villas']:active {
-  color: white;
+  color: var(--color-white);
 }
 
 div[class^='villas'] a[class^='villas']:link::before,
@@ -632,7 +633,7 @@ div[class^='villas'] a[class^='villas']:active::before {
   font-size: var(--font-size-title);
   padding: 0 2rem 1rem;
   font-weight: 300;
-  color: white;
+  color: var(--color-white);
   text-transform: uppercase;
   margin-bottom: 2rem;
   position: relative;
@@ -645,18 +646,20 @@ div[class^='villas'] a[class^='villas']:active::before {
   left: 45%;
   width: 10%;
   height: 0.2rem;
-  background-color: white;
+  background-color: var(--color-white);
 }
 
 /*****************************************  EVENTS CONTENT SECTION *****************************************/
 
-#events-content {
+#events-content,
+#features-content {
   grid-column: container-start / col-end 9;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }
 
-#events-content > div {
+#events-content > div,
+#features-content > div {
   padding: var(--padding-section);
   display: flex;
   flex-direction: column;
@@ -690,25 +693,31 @@ div[class^='villas'] a[class^='villas']:active::before {
 h2[class*='title'] {
   font-size: var(--font-size-title);
   font-weight: 400;
-  color: white;
+  color: var(--color-white);
 }
 
 p[class*='paragraph'] {
-  color: white;
+  color: var(--color-white);
   font-weight: 500;
 }
 
 /*****************************************  EVENTS TEXT SECTION *****************************************/
 
-#events-text {
-  background-color: var(--color-tertiary);
-  grid-column: col-start 10 / center-end;
+#events-text,
+#features-text,
+#gallery-text {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.events-text__content--title {
+#events-text {
+  grid-column: col-start 10 / center-end;
+  background-color: var(--color-tertiary);
+}
+
+.events-text__content--title,
+.features-text__content--title {
   transform: rotate(90deg);
   letter-spacing: 0.2rem;
 }
@@ -718,10 +727,6 @@ p[class*='paragraph'] {
 #gallery-text {
   background-color: var(--color-primary);
   grid-column: center-start / col-end 1;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .gallery-text__content--title {
@@ -749,7 +754,7 @@ p[class*='paragraph'] {
   position: relative;
   width: 100%;
   height: 100%;
-  transition: transform 2s ease-in-out;
+  transition: transform var(--transition-duration) ease-in-out;
 }
 
 .gallery-carousel__img-container--list__item {
@@ -815,30 +820,184 @@ p[class*='paragraph'] {
 
 /*****************************************  FEATURES CONTENT SECTION *****************************************/
 
-#features-content {
-  background-color: var(--color-primary);
-  grid-column: container-start / col-end 9;
+#features-content > div:first-child {
+  background: linear-gradient(
+      var(--color-secondary-m-light),
+      var(--color-secondary-m-light)
+    ),
+    url('img/Features/cocktail.jpg');
+  border-right: solid 0.2rem var(--color-secondary);
+}
+
+#features-content > div:last-child {
+  background: linear-gradient(
+      var(--color-secondary-m-light),
+      var(--color-secondary-m-light)
+    ),
+    url('img/Features/surfing.jpg');
+  border-left: solid 0.2rem var(--color-secondary);
+}
+
+#features-content > div:first-child,
+#features-content > div:last-child {
+  background-size: cover;
+  background-position: left;
 }
 
 /*****************************************  FEATURES TEXT SECTION *****************************************/
 
 #features-text {
   background-color: var(--color-secondary);
-  grid-column: col-start 10 / center-end;
 }
 
 /*****************************************  TESTIMONIALS SECTION *****************************************/
 
 #testimonials {
-  background-color: var(--color-tertiary);
   grid-column: center-start / center-end;
+  padding: var(--padding-section);
+
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 28rem);
+  grid-gap: 5rem;
+  place-content: center;
+}
+
+.testimonials__card {
+  width: 28rem;
+  height: 50rem;
+  position: relative;
+}
+
+.testimonials__card--front,
+.testimonials__card--back {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  transition: all 1s ease-in-out;
+  backface-visibility: hidden;
+  transform: perspective(100rem);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem;
+}
+
+.testimonials__card--front h2 {
+  background-color: var(--color-secondary-m-light);
+  padding: 1rem;
+  border-bottom-right-radius: 50%;
+  border-bottom-left-radius: 50%;
+}
+
+.testimonials__card--back {
+  align-items: center;
+  transform: perspective(100rem) rotateY(0.5turn);
+  background-color: var(--color-secondary);
+}
+
+.testimonials__card--back p {
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.testimonials__card:first-child .testimonials__card--front {
+  background-image: url('img/Testimonials/testimonials-1.jpg');
+}
+
+.testimonials__card:nth-child(2) .testimonials__card--front {
+  background-image: url('img/Testimonials/testimonials-2.jpg');
+}
+
+.testimonials__card:nth-child(3) .testimonials__card--front {
+  background-image: url('img/Testimonials/testimonials-3.jpg');
+}
+
+.testimonials__card:nth-child(4) .testimonials__card--front {
+  background-image: url('img/Testimonials/testimonials-4.jpg');
+}
+
+.testimonials__card:nth-child(5) .testimonials__card--front {
+  background-image: url('img/Testimonials/testimonials-5.jpg');
+}
+
+.testimonials__card:nth-child(6) .testimonials__card--front {
+  background-image: url('img/Testimonials/testimonials-6.jpg');
+}
+
+.testimonials__card:hover .testimonials__card--front {
+  transform: perspective(100rem) rotateY(0.5turn);
+}
+
+.testimonials__card:hover .testimonials__card--back {
+  transform: perspective(100rem) rotateY(1turn);
 }
 
 /*****************************************  FOOTER SECTION *****************************************/
 
 #footer {
-  background-color: var(--color-primary);
   grid-column: container-start / container-end;
+  background-color: var(--color-primary);
+  padding: 6vh 4vw;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+}
+
+.footer__social--link:link, 
+.footer__social--link:visited {
+  display: inline-block;
+  background-color: var(--color-secondary);
+  border-radius: 4rem;
+  margin-right: 1rem;
+  box-shadow: 0.5rem 0.5rem 2rem 0.5rem var(--color-secondary-m-light),
+    -0.5rem -0.5rem 2rem 0.5rem var(--color-secondary-m-light);
+  transform: scale(04.8rem);
+  animation: social 3s linear infinite;
+}
+
+.footer__social--link i {
+  font-size: 2rem;
+  color: var(--color-primary)
+}
+
+@keyframes social {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+.footer__social--link:link:nth-child(1), 
+.footer__social--link:visited:nth-child(1) {
+  animation-delay: 0s;
+}
+.footer__social--link:link:nth-child(2), 
+.footer__social--link:visited:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.footer__social--link:link:nth-child(3), 
+.footer__social--link:visited:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.footer__social--link:link:nth-child(4), 
+.footer__social--link:visited:nth-child(4) {
+  animation-delay: 0.9s;
 }
 
 /*****************************************  MEDIA QUERIES *****************************************/
@@ -894,6 +1053,12 @@ p[class*='paragraph'] {
   #villas {
     grid-gap: 0;
   }
+
+  #footer {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 3rem;
+  }
 }
 /*****************************************  700px *****************************************/
 
@@ -911,7 +1076,7 @@ p[class*='paragraph'] {
 
   .gallery-carousel__nav {
     flex-wrap: wrap;
-    justify-content: flex-start; 
+    justify-content: flex-start;
     gap: 2.5rem;
     height: 12%;
   }
@@ -928,11 +1093,13 @@ p[class*='paragraph'] {
   div[class^='villas'] p[class^='villas'],
   .motto__content--paragraph,
   #events-content > div p[class*='paragraph'],
-  #features-content > div p[class*='paragraph'] {
+  #features-content > div p[class*='paragraph'],
+  #footer p {
     font-size: 1.5rem;
   }
 
-  #events-content {
+  #events-content,
+  #features-content {
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
   }
   #events-content,
@@ -974,7 +1141,9 @@ p[class*='paragraph'] {
     font-size: 5rem;
   }
 
-  
+  #footer {
+    padding: 4vh 2vw;
+  }
 }
 /*****************************************  411px *****************************************/
 
@@ -992,6 +1161,4 @@ p[class*='paragraph'] {
   #villas {
     grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
   }
-
-  
 }
